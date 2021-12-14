@@ -13,8 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ecomplus/storefront.git",
-    "directory": "@ecomplus/widget-avise-me"
+    "url": "git+https://github.com/confere-stores/widget-avise-me.git"
   },
   "keywords": [
     "ecomplus",
@@ -25,9 +24,9 @@
   "author": "E-Com Club <ti@e-com.club>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ecomplus/storefront/issues"
+    "url": "https://github.com/confere-stores/widget-avise-me/issues"
   },
-  "homepage": "https://github.com/ecomplus/storefront/tree/master/@ecomplus/widget-avise-me#readme",
+  "homepage": "https://github.com/confere-stores/widget-avise-me/tree/master/#readme",
   "webpackOutput": {
     "library": "widgetAviseMe",
     "filename": "widget-avise-me.min.js"
