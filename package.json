@@ -1,0 +1,35 @@
+{
+  "name": "@confere-stores/widget-avise-me",
+  "version": "1.2.0",
+  "description": "Plugin para lojas da confere shop notificar clientes sobre promoções e estoque",
+  "main": "dist/widget-avise-me.min.js",
+  "module": "src/index.js",
+  "browser": "dist/widget-avise-me.min.js",
+  "jsdelivr": "dist/public/widget-avise-me.var.min.js",
+  "unpkg": "dist/public/widget-avise-me.var.min.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "serve": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecomplus/storefront.git",
+    "directory": "@ecomplus/widget-avise-me"
+  },
+  "keywords": [
+    "ecomplus",
+    "storefront",
+    "widget",
+    "notifications"
+  ],
+  "author": "E-Com Club <ti@e-com.club>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecomplus/storefront/issues"
+  },
+  "homepage": "https://github.com/ecomplus/storefront/tree/master/@ecomplus/widget-avise-me#readme",
+  "webpackOutput": {
+    "library": "widgetAviseMe",
+    "filename": "widget-avise-me.min.js"
+  }
+}

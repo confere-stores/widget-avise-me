@@ -1,0 +1,97 @@
+<%
+const url = 'https://us-central1-avise-me-confere.cloudfunctions.net/app/offers/notification' +
+  `?storeId=${_.state.store_id}&productId=${_.state._id}` +
+  `&stylesheet=${encodeURIComponent(`https://${_.settings.domain}/storefront.css`)}`
+%>
+
+<script>
+  window._offersNtShow = function (type) {
+    var $iframe = document.getElementById('_offers-nt__iframe-' + type);
+    var $product = $iframe.closest(".product");
+    var variationId = ($product.querySelector('.product') || $product).dataset.selectedVariation || '';
+    if (!$iframe.hasAttribute('src')) {
+      $iframe.setAttribute('src', $iframe.dataset.src + '&variationId=' + variationId);
+      $iframe.onload = setTimeout(function () {
+        document.getElementById('_offers-nt__spinner-' + type).style.display = 'none';
+      }, 500);
+    }
+  };
+</script>
+
+<div class="d-none">
+  <div data-slot="out-of-stock">
+    <% if (options.enableOutOfStock) { %>
+      <button
+        type="button"
+        class="btn btn-lg btn-primary offers-notification"
+        data-toggle="collapse"
+        href="#_offers-nt__collapse-stock"
+        onclick="_offersNtShow('stock')"
+      >
+        <i class="fas fa-bell mr-1"></i>
+        <%= _.ecomUtils.i18n({
+          en_us: 'Notify me when available',
+          pt_br: 'Avise-me quando chegar'
+        }) %>
+      </button>
+
+      <div class="collapse mt-4" id="_offers-nt__collapse-stock">
+        <div class="card card-body">
+          <div
+            class="spinner-border position-absolute"
+            role="status"
+            id="_offers-nt__spinner-stock"
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <iframe
+            style="min-height: 165px; border:none; width: 100%;"
+            id="_offers-nt__iframe-stock"
+            name="_offers-nt__iframe"
+            data-src="<%- url %>&criterias=out_of_stock"
+          >
+          </iframe>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<div class="d-none">
+  <div data-slot="track-price">
+    <% if (options.enablePriceChange) { %>
+      <button
+        type="button"
+        class="btn btn-sm btn-light mt-3 offers-notification"
+        data-toggle="collapse"
+        href="#_offers-nt__collapse-price"
+        onclick="_offersNtShow('price')"
+      >
+        <i class="fas fa-bell mr-1"></i>
+        <%= _.ecomUtils.i18n({
+          en_us: 'Notify me if the price drops',
+          pt_br: 'Avise-me se o preço baixar'
+        }) %>
+      </button>
+      <div class="collapse mt-4" id="_offers-nt__collapse-price">
+        <div class="card card-body">
+          <div
+            class="spinner-border position-absolute"
+            role="status"
+            id="_offers-nt__spinner-price"
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
+          <iframe
+            style="min-height: 165px; border:none; width: 100%;"
+            id="_offers-nt__iframe-price"
+            name="_offers-nt__iframe"
+            data-src="<%- url %>&criterias=price_change"
+          >
+          </iframe>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
